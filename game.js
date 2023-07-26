@@ -9,7 +9,6 @@ const Game = {
     player: undefined,
     enemys: [],
     platforms: [],
-    // bullets: [],
 
     keys: { TOP: 'KeyW', SPACE: 'Space', RIGHT: 'KeyD', LEFT: 'KeyA' },
 
@@ -53,10 +52,10 @@ const Game = {
     createElements() {
         this.background = new Background(this.gameScreen, this.gameSize)
         this.player = new Player(this.gameScreen, this.gameSize)
-        this.enemys1 = new Enemy1(this.gameScreen, this.gameSize)
-        this.enemys2 = new Enemy2(this.gameScreen, this.gamesize)
-        this.enemys3 = new Enemy3(this.gameScreen, this.gamesize)
-        this.enemys4 = new Enemy4(this.gameScreen, this.gameSize)
+        this.enemys.push(new Enemy(this.gameScreen, this.gameSize, 270, 200, 1110, 1000, "img/enemy 1.gif"))
+        this.enemys.push(new Enemy(this.gameScreen, this.gamesize, 250, 250, 1550, 650, "img/enemy 2.gif"))
+        this.enemys.push(new Enemy(this.gameScreen, this.gamesize, 500, 300, 2000, 450, "img/enemy3.gif"))
+        this.enemys.push(new Enemy(this.gameScreen, this.gameSize, 500, 550, 2600, 80, "img/boss.gif"))
         this.platforms1 = new Platform1(this.gameScreen, this.gameSize)
         this.platforms2 = new Platform2(this.gameScreen, this.gameSize)
         this.platforms3 = new Platform3(this.gameScreen, this.gameSize)
@@ -71,7 +70,7 @@ const Game = {
     },
 
     gameLoop() {
-        this.isCollision()
+        this.checkBulletCollision()
         this.drawAll()
         window.requestAnimationFrame(() => this.gameLoop())
     },
@@ -100,7 +99,6 @@ const Game = {
                 this.player.playerVel.top = 0
 
             }
-            // this.player.playerPos.base = this.platforms2.platformPos2.left
         }
 
     },
@@ -118,7 +116,6 @@ const Game = {
                 this.player.playerVel.top = 0
 
             }
-            // this.player.playerPos.base = this.platforms2.platformPos2.left
         }
 
     },
@@ -136,7 +133,6 @@ const Game = {
                 this.player.playerVel.top = 0
 
             }
-            // this.player.playerPos.base = this.platforms2.platformPos2.left
         }
 
     },
@@ -154,146 +150,36 @@ const Game = {
                 this.player.playerVel.top = 0
 
             }
-            // this.player.playerPos.base = this.platforms2.platformPos2.left
         }
 
     },
 
-    // if (this.player.playerPos.top === this.player.playerPos.base) {
+    checkBulletCollision() {
+        console.log(this.enemys)
+        this.player.bullets.forEach((bullet, i) => {
 
-    //     this.player.isJumping = false
-    // }
+            this.enemys.forEach((enemy, j) => {
 
-    // if (this.player.playerPos.top === this.platforms2.platformPos2.top) {
+                if (bullet.bulletPos.left < enemy.position.left + enemy.size.w &&
+                    bullet.bulletPos.left + bullet.bulletSize.w > enemy.position.left &&
+                    bullet.bulletPos.top < enemy.position.top + enemy.size.h &&
+                    bullet.bulletSize.h + bullet.bulletPos.top > enemy.position.top) {
 
-    //     this.player.isJumping = false
+                    enemy.deleteFromDOM()
+                    bullet.deleteFromDOM()
 
-    // }
+                    this.enemys.splice(j, 1)
+                    this.player.bullets.splice(i, 1)
 
-    // if (this.player.playerPos.left <=
-    //     this.platforms2.platformPos2.left + this.platforms2.platformSize2.w &&
-
-    //     this.player.playerPos.left + this.player.playerSize.w >=
-    //     this.platforms2.platformPos2.left &&
-
-    //     this.player.playerPos.top + this.player.playerSize.h <=
-    //     this.platforms2.platformPos2.top
-
-    // ) {
-
-    //     this.player.playerVel.top = 0
-    //     // this.playerPos.top += this.playerVel.top;
-    //     // this.playerVel.top += this.playerVel.gravity;
-    //     this.player.isJumping = false
-    //     console.log("ESTOY EN UNA PLATAFORMA")
-
-
-    // }
-
-    // else {
-
-    //     this.player.playerPos.base = this.gameSize.h - this.player.playerSize.h
-
-
-
-    // }
-
-
-    // checkBorderCollision3() {
-
-    //     if (this.player.playerPos.top === this.player.playerPos.base) {
-
-    //         this.player.onGround = true
-    //     }
-
-    //     if (this.player.playerPos.top === this.platforms2.platformPos2.top) {
-
-    //         this.player.onGround = false
-    //     }
-
-    //     if (
-
-    //         this.player.playerPos.left <=
-    //         this.platforms3.platformPos3.left + this.platforms3.platformSize3.w &&
-
-    //         this.player.playerPos.left + this.player.playerSize.w >=
-    //         this.platforms3.platformPos3.left &&
-
-    //         this.player.playerPos.top + this.player.playerSize.h ===
-    //         this.platforms3.platformPos3.top
-
-    //     ) {
-
-    //         this.player.playerVel.top = 0
-    //         this.player.onGround = true
-    //     }
-
-    //     else {
-
-    //         this.player.playerPos.base = this.gameSize.h - this.player.playerSize.h
-    //     }
-
-    // },
-
-    // checkBorderCollision4() {
-
-    //     // if (this.player.playerPos.top === this.player.playerPos.base) {
-
-    //     //     this.player.onGround = true
-    //     // }
-
-    //     // if (this.player.playerPos.top === this.platforms4.platformPos4.top) {
-
-    //     //     this.player.onGround = false
-    //     // }
-
-    //     if (
-
-    //         this.player.playerPos.left <=
-    //         this.platforms4.platformPos4.left + this.platforms4.platformSize4.w &&
-
-    //         this.player.playerPos.left + this.player.playerSize.w >=
-    //         this.platforms4.platformPos4.left &&
-
-    //         this.player.playerPos.top + this.player.playerSize.h ===
-    //         this.platforms4.platformPos4.top
-
-    //     ) {
-
-    //         this.player.playerVel.top = 0
-    //         // this.player.onGround = true
-    //     }
-
-    //     else {
-
-    //         this.player.playerPos.base = this.gameSize.h - this.player.playerSize.h
-    //     }
-
-
-    isCollision() {
-
-
-        for (let i = 0; i < this.player.bullets.length; i++) {
-            console.log("MUERETE DE UNA VEZ");
-
-            if (this.enemys1) {
-
-                if (
-                    this.player.bullets[i].bulletPos.left > this.enemys1.enemysPos1.left
-                ) {
-                    console.log("MUERE");
-                    document.querySelector("#enemy1").remove()
-                    this.player.bullets[i].bulletPos.left += 5000
-                    delete this.enemys1
                 }
-            }
-        }
+            })
+
+
+
+
+        })
+
     },
-
-
-
-
-
 
 }
 

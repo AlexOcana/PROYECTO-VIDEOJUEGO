@@ -8,7 +8,7 @@ class Platform1 {
         this.platformSize1 = {
 
             w: 400,
-            h: 50
+            h: 20
         }
 
         this.platformPos1 = {
@@ -25,7 +25,7 @@ class Platform1 {
 
         this.platformElement1 = document.createElement(`div`)
         this.platformElement1.style.position = "absolute"
-        this.platformElement1.style.backgroundColor = `red`
+        this.platformElement1.style.backgroundColor = `none`
         this.platformElement1.style.width = `${this.platformSize1.w}px`
         this.platformElement1.style.height = `${this.platformSize1.h}px`
         this.platformElement1.style.left = `${this.platformPos1.left}px`

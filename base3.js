@@ -25,7 +25,7 @@ class Platform3 {
 
         this.platformElement3 = document.createElement(`div`)
         this.platformElement3.style.position = "absolute"
-        this.platformElement3.style.backgroundColor = `blue`
+        this.platformElement3.style.backgroundColor = `none`
         this.platformElement3.style.width = `${this.platformSize3.w}px`
         this.platformElement3.style.height = `${this.platformSize3.h}px`
         this.platformElement3.style.left = `${this.platformPos3.left}px`

@@ -90,7 +90,7 @@ class Player {
         this.isJumping = true
 
         this.playerPos.top -= 10;
-        this.playerVel.top -= 30;
+        this.playerVel.top = -30;
 
     }
 

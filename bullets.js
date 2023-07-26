@@ -49,6 +49,10 @@ class Bullets {
 
         this.updatePosition()
     }
+    deleteFromDOM() {
+        this.bulletElement.remove()
+
+    }
 
     updatePosition() {
         this.bulletElement.style.left = `${this.bulletPos.left}px`

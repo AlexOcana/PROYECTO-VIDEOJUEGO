@@ -25,7 +25,7 @@ class Platform4 {
 
         this.platformElement4 = document.createElement(`div`)
         this.platformElement4.style.position = "absolute"
-        this.platformElement4.style.backgroundColor = `green`
+        this.platformElement4.style.backgroundColor = `none`
         this.platformElement4.style.width = `${this.platformSize4.w}px`
         this.platformElement4.style.height = `${this.platformSize4.h}px`
         this.platformElement4.style.left = `${this.platformPos4.left}px`
