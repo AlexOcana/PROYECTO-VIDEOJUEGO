@@ -58,7 +58,11 @@ class BulletsEnemys {
         this.bulletElement.style.top = `${this.bulletPosition.top}px`
     }
 
+    deleteFromDOM() {
+        console.log("deleting from dom")
+        this.bulletElement.remove()
 
+    }
 
 
 

@@ -39,7 +39,7 @@ class Enemy {
     }
 
     enemyShoot() {
-        console.log("están las balas?")
+
 
         if (this.bulletsEnemy.length < 1) {
 
@@ -62,14 +62,14 @@ class Enemy {
             if (bull.bulletPosition.left < 0) {
                 this.bulletsEnemy.splice(idx, 1)
                 bull.bulletElement.remove()
-                console.log("BORRANDO")
+
             }
         })
     }
 
 
     deleteFromDOM() {
-        console.log("deleting from dom")
+
         this.element.remove()
 
     }

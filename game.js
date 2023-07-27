@@ -9,7 +9,7 @@ const Game = {
     player: undefined,
     enemys: [],
     platforms: [],
-
+    playerLifes: 40,
 
     keys: { TOP: 'KeyW', SPACE: 'Space', RIGHT: 'KeyD', LEFT: 'KeyA' },
 
@@ -63,6 +63,7 @@ const Game = {
         this.platforms2 = new Platform2(this.gameScreen, this.gameSize)
         this.platforms3 = new Platform3(this.gameScreen, this.gameSize)
         this.platforms4 = new Platform4(this.gameScreen, this.gameSize)
+
     },
 
     start() {
@@ -74,12 +75,13 @@ const Game = {
 
     gameLoop() {
         this.checkBulletCollision()
+        this.enemyBulletCollision()
         this.drawAll()
         this.enemys.forEach(eachEnemy => {
             eachEnemy.enemyShoot()
         })
+        // this.gameOver()
 
-        console.log(this.player.isJumping)
         window.requestAnimationFrame(() => this.gameLoop())
 
 
@@ -195,20 +197,32 @@ const Game = {
         })
     },
 
-    playerBulletCollision() {
-        this.enemys.forEach((eachenemy, i) => {
+    enemyBulletCollision() {
 
+
+        this.enemys.forEach((enemy, j) => {
+
+            enemy.bulletsEnemy.forEach((ebull, i) => {
+
+                if (ebull.bulletPosition.left < this.player.playerPos.left + this.player.playerSize.w &&
+                    ebull.bulletPosition.left + ebull.bulletSize.w > this.player.playerPos.left &&
+                    ebull.bulletPosition.top < this.player.playerPos.top + this.player.playerSize.h &&
+                    ebull.bulletSize.h + ebull.bulletPosition.top > this.player.playerPos.top) {
+                    // alert("GAME OVER")
+
+                    ebull.deleteFromDOM()
+                    this.playerLifes--
+                    if (this.playerLifes <= 0) {
+                        alert("GAME OVER")
+                    }
+                }
+            })
         })
+    },
 
-
-    }
-
+    // gameOver() {
+    //     alert("GAME OVER")
+    // }
 
 
 }
-
-
-
-
-
-
