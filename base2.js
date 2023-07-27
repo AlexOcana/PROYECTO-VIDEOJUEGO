@@ -8,7 +8,7 @@ class Platform2 {
         this.platformSize2 = {
 
             w: 220,
-            h: 10
+            h: 250
         }
 
         this.platformPos2 = {
@@ -25,7 +25,7 @@ class Platform2 {
 
         this.platformElement2 = document.createElement(`div`)
         this.platformElement2.style.position = "absolute"
-        this.platformElement2.style.backgroundColor = `none`
+        this.platformElement2.style.backgroundColor = `transparent`
         this.platformElement2.style.width = `${this.platformSize2.w}px`
         this.platformElement2.style.height = `${this.platformSize2.h}px`
         this.platformElement2.style.left = `${this.platformPos2.left}px`
@@ -34,15 +34,6 @@ class Platform2 {
         this.gameScreen.appendChild(this.platformElement2)
 
     }
-
-    // jump() {
-
-    //     if (this.platformPos2.top < this.player.playerPos.top) {
-
-    //         this.jump()
-    //         this.updatePosition()
-    //     }
-    // }
 
     updatePosition() {
         this.platformElement2.style.left = `${this.platformPos2.left}px`

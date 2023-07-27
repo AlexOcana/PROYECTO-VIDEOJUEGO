@@ -10,13 +10,15 @@ const Game = {
     enemys: [],
     platforms: [],
     playerLifes: 40,
-
+    backgroundAudio: new Audio("img/Barbacoa.mp3"),
     keys: { TOP: 'KeyW', SPACE: 'Space', RIGHT: 'KeyD', LEFT: 'KeyA' },
+    gameStarted: false,
 
     init() {
-        this.start()
+
         this.setDimensions()
         this.setEventListeners()
+
     },
 
     setDimensions() {
@@ -25,10 +27,19 @@ const Game = {
         this.gameScreen.style.height = `${this.gameSize.h}px`
     },
 
+    // playMusic() {
+    //     document.getElementById('music').play();
+    // },
+
     setEventListeners() {
 
         document.addEventListener("keydown", e => {
-
+            if (!this.gameStarted) {
+                this.start()
+                this.backgroundAudio.play()
+                document.querySelector("#splashScreen").remove()
+                this.gameStarted = true
+            }
             switch (e.code) {
                 case this.keys.TOP:
                     if (this.player.move) {
@@ -51,6 +62,7 @@ const Game = {
         })
 
     },
+
 
     createElements() {
         this.background = new Background(this.gameScreen, this.gameSize)
@@ -77,6 +89,7 @@ const Game = {
         this.checkBulletCollision()
         this.enemyBulletCollision()
         this.drawAll()
+        this.youWin()
         this.enemys.forEach(eachEnemy => {
             eachEnemy.enemyShoot()
         })
@@ -164,9 +177,6 @@ const Game = {
             this.player.isJumping = false
             if (this.player.playerVel.top > 0) {
                 this.player.playerVel.top = 0
-
-
-
             }
         }
 
@@ -220,9 +230,14 @@ const Game = {
         })
     },
 
-    // gameOver() {
-    //     alert("GAME OVER")
-    // }
 
+
+    youWin() {
+        if (this.enemys.length === 0) {
+            document.querySelector("#winScreen").style.display = "block"
+            // alert("YOU WIN")
+        }
+        console.log()
+    },
 
 }

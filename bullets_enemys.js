@@ -15,7 +15,7 @@ class BulletsEnemys {
         this.bulletVel = {
 
             left: 10,
-            top: 10
+            top: 3
         }
 
         this.bulletPosition = {
@@ -42,11 +42,7 @@ class BulletsEnemys {
     moveBullets() {
         this.bulletPosition.left -= this.bulletVel.left;
 
-
-        if (this.bulletPosition.top >= this.enemyPosition.left - this.enemySize.h) {
-            this.bulletVel.top = -0
-        }
-
+        this.bulletPosition.top += this.bulletVel.top;
         this.updatePosition()
 
     }

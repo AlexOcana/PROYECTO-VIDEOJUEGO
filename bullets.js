@@ -13,7 +13,7 @@ class Bullets {
 
         this.bulletVel = {
             left: 20,
-            top: 1,
+            top: 0,
         }
 
         this.bulletSize = {
@@ -40,11 +40,8 @@ class Bullets {
 
     move() {
         this.bulletPos.left += this.bulletVel.left;
+        this.bulletPos.top += this.bulletVel.top
 
-
-        if (this.bulletPos.top >= this.playerPos.base + this.playerSize.h) {
-            this.bulletVel.top *= 0
-        }
 
         this.updatePosition()
     }
@@ -54,6 +51,7 @@ class Bullets {
     }
 
     updatePosition() {
+        console.log(this.bulletPos.top)
         this.bulletElement.style.left = `${this.bulletPos.left}px`
         this.bulletElement.style.top = `${this.bulletPos.top}px`
     }

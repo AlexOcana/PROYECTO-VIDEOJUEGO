@@ -7,8 +7,8 @@ class Player {
             this.bullets = [],
 
             this.playerSize = {
-                w: 150,
-                h: 150,
+                w: 200,
+                h: 200,
             }
 
         this.playerPos = {
