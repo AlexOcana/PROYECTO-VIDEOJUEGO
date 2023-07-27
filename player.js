@@ -55,11 +55,12 @@ class Player {
         if (this.playerPos.top < this.playerPos.base) {       // está saltando!
             this.playerPos.top += this.playerVel.top;
             this.playerVel.top += this.playerVel.gravity;
-            this.onGround = true
+            this.isJumping = true
         }
 
 
         else {
+            this.isJumping = false
             this.playerPos.top = this.playerPos.base;
             this.playerVel.top = 1;
         }
@@ -87,10 +88,10 @@ class Player {
     }
 
     jump() {
-        this.isJumping = true
 
+        this.isJumping = true
         this.playerPos.top -= 10;
-        this.playerVel.top = -30;
+        this.playerVel.top = -20;
 
     }
 

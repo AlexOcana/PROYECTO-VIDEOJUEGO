@@ -10,6 +10,7 @@ const Game = {
     enemys: [],
     platforms: [],
 
+
     keys: { TOP: 'KeyW', SPACE: 'Space', RIGHT: 'KeyD', LEFT: 'KeyA' },
 
     init() {
@@ -31,7 +32,9 @@ const Game = {
             switch (e.code) {
                 case this.keys.TOP:
                     if (this.player.move) {
-                        this.player.jump()
+                        if (this.player.isJumping === false) {
+                            this.player.jump()
+                        }
                     }
                     break;
                 case this.keys.SPACE:
@@ -72,7 +75,14 @@ const Game = {
     gameLoop() {
         this.checkBulletCollision()
         this.drawAll()
+        this.enemys.forEach(eachEnemy => {
+            eachEnemy.enemyShoot()
+        })
+
+        console.log(this.player.isJumping)
         window.requestAnimationFrame(() => this.gameLoop())
+
+
     },
 
     drawAll() {
@@ -82,9 +92,8 @@ const Game = {
         this.checkBorderCollision3()
         this.checkBorderCollision4()
         this.checkBorderCollision1()
+
     },
-
-
 
     checkBorderCollision2() {
 
@@ -94,9 +103,10 @@ const Game = {
             this.player.playerPos.left < this.platforms2.platformPos2.left + this.platforms2.platformSize2.w &&
             this.player.playerPos.top < this.platforms2.platformPos2.top + this.platforms2.platformSize2.h
         ) {
-
+            this.player.isJumping = false
             if (this.player.playerVel.top > 0) {
                 this.player.playerVel.top = 0
+
 
             }
         }
@@ -111,9 +121,11 @@ const Game = {
             this.player.playerPos.left < this.platforms3.platformPos3.left + this.platforms3.platformSize3.w &&
             this.player.playerPos.top < this.platforms3.platformPos3.top + this.platforms3.platformSize3.h
         ) {
-
+            this.player.isJumping = false
             if (this.player.playerVel.top > 0) {
                 this.player.playerVel.top = 0
+
+
 
             }
         }
@@ -128,9 +140,11 @@ const Game = {
             this.player.playerPos.left < this.platforms4.platformPos4.left + this.platforms4.platformSize4.w &&
             this.player.playerPos.top < this.platforms4.platformPos4.top + this.platforms4.platformSize4.h
         ) {
-
+            this.player.isJumping = false
             if (this.player.playerVel.top > 0) {
                 this.player.playerVel.top = 0
+
+
 
             }
         }
@@ -145,9 +159,11 @@ const Game = {
             this.player.playerPos.left < this.platforms1.platformPos1.left + this.platforms1.platformSize1.w &&
             this.player.playerPos.top < this.platforms1.platformPos1.top + this.platforms1.platformSize1.h
         ) {
-
+            this.player.isJumping = false
             if (this.player.playerVel.top > 0) {
                 this.player.playerVel.top = 0
+
+
 
             }
         }
@@ -155,7 +171,7 @@ const Game = {
     },
 
     checkBulletCollision() {
-        console.log(this.enemys)
+
         this.player.bullets.forEach((bullet, i) => {
 
             this.enemys.forEach((enemy, j) => {
@@ -166,35 +182,30 @@ const Game = {
                     bullet.bulletSize.h + bullet.bulletPos.top > enemy.position.top) {
 
                     enemy.deleteFromDOM()
+                    enemy.bulletsEnemy.forEach(bulletEnemy => {
+
+                        bulletEnemy.bulletElement.remove()
+                    })
                     bullet.deleteFromDOM()
 
                     this.enemys.splice(j, 1)
                     this.player.bullets.splice(i, 1)
-
                 }
             })
+        })
+    },
 
-
-
+    playerBulletCollision() {
+        this.enemys.forEach((eachenemy, i) => {
 
         })
 
-    },
+
+    }
+
+
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

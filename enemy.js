@@ -35,30 +35,44 @@ class Enemy {
 
         this.gameScreen.appendChild(this.element)
 
+
     }
+
+    enemyShoot() {
+        console.log("están las balas?")
+
+        if (this.bulletsEnemy.length < 1) {
+
+            this.bulletsEnemy.push(new BulletsEnemys(this.gameScreen, this.gameSize, this.size, this.position));
+
+        }
+        this.bulletsEnemy.forEach(eachBullet => {
+
+            eachBullet.moveBullets()
+
+
+            this.clearBulletsEnemy()
+
+        })
+    }
+
+    clearBulletsEnemy() {
+
+        this.bulletsEnemy.forEach((bull, idx) => {
+            if (bull.bulletPosition.left < 0) {
+                this.bulletsEnemy.splice(idx, 1)
+                bull.bulletElement.remove()
+                console.log("BORRANDO")
+            }
+        })
+    }
+
 
     deleteFromDOM() {
         console.log("deleting from dom")
         this.element.remove()
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

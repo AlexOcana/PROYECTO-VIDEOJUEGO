@@ -40,11 +40,10 @@ class Bullets {
 
     move() {
         this.bulletPos.left += this.bulletVel.left;
-        this.bulletPos.top += this.bulletVel.top;
 
 
         if (this.bulletPos.top >= this.playerPos.base + this.playerSize.h) {
-            this.bulletVel.top *= -1;
+            this.bulletVel.top *= 0
         }
 
         this.updatePosition()
