@@ -8,8 +8,8 @@ class BulletsEnemys {
             this.enemyPosition = enemyPosition,
 
             this.bulletSize = {
-                w: 30,
-                h: 30
+                w: 40,
+                h: 40
             }
 
         this.bulletVel = {
@@ -28,8 +28,8 @@ class BulletsEnemys {
 
     init() {
         this.bulletElement = document.createElement('img')
-        this.bulletElement.src = "img/banaan.gif"
-
+        this.bulletElement.src = "img/mierda_2.png"
+        this.bulletElement.style.backgroundColor = "transparent"
         this.bulletElement.style.position = "absolute"
         this.bulletElement.style.width = `${this.bulletSize.w}px`
         this.bulletElement.style.height = `${this.bulletSize.h}px`

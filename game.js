@@ -9,7 +9,7 @@ const Game = {
     player: undefined,
     enemys: [],
     platforms: [],
-    playerLifes: 40,
+    playerLifes: 80,
     backgroundAudio: new Audio("img/Barbacoa.mp3"),
     keys: { TOP: 'KeyW', SPACE: 'Space', RIGHT: 'KeyD', LEFT: 'KeyA' },
     gameStarted: false,
